@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class RecycleView extends AppCompatActivity {
+public class RecycleViewClass extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
