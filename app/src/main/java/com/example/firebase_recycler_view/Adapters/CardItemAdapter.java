@@ -58,12 +58,12 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.Search
     public void onBindViewHolder(SearchViewHolder holder, int position) {
         holder.image.setBackgroundResource(cardItemList.get(position).getImage());
         holder.header.setText(cardItemList.get(position).getName());
-        holder.subheader.setText(cardItemList.get(position).getImage());
+        holder.subheader.setText(cardItemList.get(position).getSubname());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return cardItemList.size();
     }
 
     public static final class SearchViewHolder extends RecyclerView.ViewHolder {

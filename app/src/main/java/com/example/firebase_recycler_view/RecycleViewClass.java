@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.example.firebase_recycler_view.Adapters.CardItemAdapter;
 import com.example.firebase_recycler_view.Mode.CardItem;
@@ -20,7 +21,9 @@ public class RecycleViewClass extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_recycle_view);
+
 
         //Add items to the category item model class.
         List<CardItem> categoryItems = new ArrayList<>();
@@ -29,6 +32,8 @@ public class RecycleViewClass extends AppCompatActivity {
         categoryItems.add(new CardItem("Name", R.drawable.image_3, "This is sample description", "subheading"));
         categoryItems.add(new CardItem("Name", R.drawable.image_3, "This is sample description", "subheading"));
         categoryItems.add(new CardItem("Name", R.drawable.image_3, "This is sample description", "subheading"));
+
+        setMainCategoryRecycler(categoryItems);
     }
 
     private void setMainCategoryRecycler(List<CardItem> allCategoriesList){

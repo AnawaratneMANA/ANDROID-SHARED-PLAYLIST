@@ -30,7 +30,7 @@
                     android:layout_width="326dp"
                     android:layout_height="30dp"
                     android:background="@null"
-                    android:fontFamily="@font/raleway_bold"
+                    android:fontFamily="@font/raleway_thin"
                     android:gravity="center_vertical"
                     android:hint="Search Category"
                     android:paddingTop="5dp"

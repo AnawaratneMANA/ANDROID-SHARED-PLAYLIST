@@ -62,4 +62,12 @@ public class CardItem {
     public void setFireURL(String fireURL) {
         this.fireURL = fireURL;
     }
+
+    public String getSubname() {
+        return subname;
+    }
+
+    public void setSubname(String subname) {
+        this.subname = subname;
+    }
 }
