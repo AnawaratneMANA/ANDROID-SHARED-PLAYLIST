@@ -20,9 +20,8 @@ public class CardItem {
     /**
      * Overloaded Constructor.
      * */
-    public CardItem(String name, Integer image, String description, String subname, String fireURL) {
+    public CardItem(String name, String description, String subname, String fireURL) {
         this.name = name;
-        this.image = image;
         this.description = description;
         this.subname = subname;
         this.fireURL = fireURL;

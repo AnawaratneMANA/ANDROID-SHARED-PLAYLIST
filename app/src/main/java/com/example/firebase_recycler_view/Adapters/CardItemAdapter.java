@@ -1,5 +1,7 @@
 package com.example.firebase_recycler_view.Adapters;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.firebase_recycler_view.Mode.CardItem;
 import com.example.firebase_recycler_view.R;
 
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
+
+import static android.graphics.BitmapFactory.decodeFile;
 
 public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.SearchViewHolder>{
 
@@ -56,15 +65,26 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.Search
 
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
-        holder.image.setBackgroundResource(cardItemList.get(position).getImage());
-        holder.header.setText(cardItemList.get(position).getName());
-        holder.subheader.setText(cardItemList.get(position).getSubname());
+
+
+        try {
+            BitmapDrawable d = new BitmapDrawable(String.valueOf(cardItemList.get(position).getFireURL()));
+            holder.image.setBackground(d);
+            holder.header.setText(cardItemList.get(position).getName());
+            holder.subheader.setText(cardItemList.get(position).getSubname());
+            holder.description.setText(cardItemList.get(position).getDescription());
+        } catch (Exception e){
+            System.out.println("Data Binding Error | Adapter Class" + e.getMessage());
+        }
+
     }
 
     @Override
     public int getItemCount() {
         return cardItemList.size();
     }
+
+
 
     public static final class SearchViewHolder extends RecyclerView.ViewHolder {
         LinearLayout image;
