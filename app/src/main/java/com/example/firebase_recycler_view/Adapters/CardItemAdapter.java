@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -12,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.firebase_recycler_view.Mode.CardItem;
+import com.example.firebase_recycler_view.Mode.CustomLayout;
 import com.example.firebase_recycler_view.R;
+import com.squareup.picasso.Picasso;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -68,8 +71,18 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.Search
 
 
         try {
-            BitmapDrawable d = new BitmapDrawable(String.valueOf(cardItemList.get(position).getFireURL()));
-            holder.image.setBackground(d);
+            final ImageView img = new ImageView(getContext());
+            Picasso.with(img.getContext()).load(cardItemList.get(position).getFireURL()).into(img, new com.squareup.picasso.Callback() {
+                @Override
+                public void onSuccess() {
+                    holder.image.setBackgroundDrawable(img.getDrawable());
+                }
+
+                @Override
+                public void onError() {
+                }
+            });
+
             holder.header.setText(cardItemList.get(position).getName());
             holder.subheader.setText(cardItemList.get(position).getSubname());
             holder.description.setText(cardItemList.get(position).getDescription());
