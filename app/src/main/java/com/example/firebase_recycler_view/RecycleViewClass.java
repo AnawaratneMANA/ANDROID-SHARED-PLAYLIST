@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 import com.example.firebase_recycler_view.Adapters.CardItemAdapter;
 import com.example.firebase_recycler_view.Mode.CardItem;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ public class RecycleViewClass extends AppCompatActivity {
 
     RecyclerView mainCategoryRecycler;
     CardItemAdapter mainRecyclerAdapter;
+    DatabaseReference database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class RecycleViewClass extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_recycle_view);
 
+        //Database connection.
 
         //Add items to the category item model class.
         List<CardItem> categoryItems = new ArrayList<>();
@@ -34,6 +37,14 @@ public class RecycleViewClass extends AppCompatActivity {
         categoryItems.add(new CardItem("Name", R.drawable.image_3, "This is sample description", "subheading"));
 
         setMainCategoryRecycler(categoryItems);
+
+        //Firebase Datastore.
+
+        //Firebase Listening Method.
+
+
+
+
     }
 
     private void setMainCategoryRecycler(List<CardItem> allCategoriesList){
