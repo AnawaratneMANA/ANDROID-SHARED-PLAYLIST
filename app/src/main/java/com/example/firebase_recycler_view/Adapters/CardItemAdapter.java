@@ -3,6 +3,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.firebase_recycler_view.Mode.CardItem;
 import com.example.firebase_recycler_view.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -56,9 +58,30 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.Search
 
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
-        holder.image.setBackgroundResource(cardItemList.get(position).getImage());
-        holder.header.setText(cardItemList.get(position).getName());
-        holder.subheader.setText(cardItemList.get(position).getSubname());
+        try {
+
+            //Image Binding - To LinearLayout Background (URL Image -> LinearLayout Background).
+            final ImageView imageView = new ImageView(getContext());
+            Picasso.with(imageView.getContext()).load(cardItemList.get(position).getFireURL()).into(imageView, new com.squareup.picasso.Callback(){
+
+                @Override
+                public void onSuccess() {
+                    holder.image.setBackgroundDrawable(imageView.getDrawable());
+                }
+
+                @Override
+                public void onError() {
+                    System.out.println("Image Binding Error | Adapter Class");
+                }
+            });
+
+            holder.header.setText(cardItemList.get(position).getName());
+            holder.subheader.setText(cardItemList.get(position).getSubname());
+            holder.description.setText(cardItemList.get(position).getDescription());
+        } catch (Exception e){
+            System.out.println("Data Binding Error | Adapter Class");
+        }
+
     }
 
     @Override
